@@ -1,1 +1,41 @@
+body {
+  margin: 0;
+  font-family: Arial;
+  background: #0b0b0b;
+  color: gold;
+  text-align: center;
+}
 
+.hero {
+  padding: 80px 20px;
+  background: linear-gradient(black, #1a1a1a);
+}
+
+button {
+  padding: 12px 25px;
+  background: gold;
+  border: none;
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.gallery {
+  padding: 40px;
+}
+
+.images img {
+  margin: 10px;
+  border: 2px solid gold;
+}
+
+.card {
+  padding: 40px;
+}
+
+.vip-card {
+  border: 2px solid gold;
+  padding: 20px;
+  display: inline-block;
+}
