@@ -1,18 +1,42 @@
-async function joinVIP() {
-  const email = prompt("Enter email");
-  const password = prompt("Enter password");
+const express = require("express");
+const cors = require("cors");
 
-  const res = await fetch("http://localhost:3000/login", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ email, password })
-  });
+const app = express();
+app.use(cors());
+app.use(express.json());
 
-  const data = await res.json();
+let users = [];
 
-  if (data.success) {
-    alert("Login success — VIP coming next step");
+// TEST ROUTE
+app.get("/", (req, res) => {
+  res.send("Backend is working");
+});
+
+// REGISTER
+app.post("/register", (req, res) => {
+  const { email, password } = req.body;
+
+  users.push({ email, password });
+
+  console.log("Users:", users);
+
+  res.json({ success: true, message: "Registered" });
+});
+
+// LOGIN
+app.post("/login", (req, res) => {
+  const { email, password } = req.body;
+
+  const user = users.find(
+    u => u.email === email && u.password === password
+  );
+
+  if (user) {
+    res.json({ success: true });
   } else {
-    alert("Invalid login");
+    res.json({ success: false });
   }
-}
+});
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log("Running on " + PORT));
